@@ -1,0 +1,3 @@
+include ':unimo'
+include ':MyUni'
+rootProject.name = "Môj Unimobile"
