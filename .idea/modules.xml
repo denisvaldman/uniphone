@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MyUni/MyUni.iml" filepath="$PROJECT_DIR$/.idea/modules/MyUni/MyUni.iml" group="Môj Unimobile/MyUni" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Môj_Unimobile.iml" filepath="$PROJECT_DIR$/.idea/modules/Môj_Unimobile.iml" group="Môj_Unimobile" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/unimo/unimo.iml" filepath="$PROJECT_DIR$/.idea/modules/unimo/unimo.iml" group="Môj Unimobile/unimo" />
+    </modules>
+  </component>
+</project>
