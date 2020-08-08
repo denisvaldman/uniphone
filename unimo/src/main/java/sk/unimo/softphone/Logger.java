@@ -2,14 +2,12 @@ package sk.unimo.softphone;
 
 import android.util.Log;
 
-
-
 /**
  * Created by denis.valdman on 4. 12. 2015.
  */
 public class Logger {
     private static boolean isDebugEnabled = BuildConfig.DEBUG;
-    private static final String TAG = "AppSuite";
+    private static final String TAG = "UniQuorn";
     private static int bufferSize = 4055;
 
     public  static void initialize(boolean isDebugEnabled){
