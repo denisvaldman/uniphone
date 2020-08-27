@@ -38,7 +38,8 @@
             android:label="CarrierService"
             android:permission="android.permission.BIND_CARRIER_SERVICES">
             <intent-filter>
-                <action android:name="android.service.carrier.ConfigService"/></intent-filter>
+<!--                <action android:name="android.service.carrier.ConfigService"/></intent-filter>-->
+                <action android:name="android.service.carrier.CarrierService"/></intent-filter>
             <meta-data android:name="android.service.carrier.LONG_LIVED_BINDING"
                 android:value="true" />
         </service>
