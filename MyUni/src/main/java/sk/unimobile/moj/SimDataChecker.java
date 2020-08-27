@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.PersistableBundle;
+import android.telephony.IccOpenLogicalChannelResponse;
 import android.telephony.TelephonyManager;
 
 import androidx.core.app.ActivityCompat;
@@ -104,6 +105,46 @@ public class SimDataChecker {
         public void setAuthentication(String authentication) {
             this.authentication = authentication;
         }
+    }
+
+    public void impl1apdu1(Context context){
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A000000151000000",0x00);
+        int channelNo = iccOpenLogicalChannelResponse.getChannel();
+        //# You may get something like this 6F1F8410A0000005591010FFFFFFFF8900000100A5049F6501FFE00582030202009000, & you can ignore it.
+        telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0xA4,0x04,0x00,0x10,"A0000001249921F2300100014D4F5E00");
+
+        telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x42,0x00,0x00,0x00,"00");
+
+    }
+
+    public void impl1apdu2(Context context){
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A000000151000000",0x00);
+        int channelNo = iccOpenLogicalChannelResponse.getChannel();
+        //# You may get something like this 6F1F8410A0000005591010FFFFFFFF8900000100A5049F6501FFE00582030202009000, & you can ignore it.
+        telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0xA4,0x04,0x00,0x10,"A0000001249921F2300100014D4F5E00");
+
+        telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x43,0x00,0x00,0x01, "01");
+
+    }
+
+    public void impl2apdu1(Context context){
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A0000001249921F2300100014D4F5E00",0x00);
+        int channelNo = iccOpenLogicalChannelResponse.getChannel();
+
+        telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x42,0x00,0x00,0x00,"00");
+
+    }
+
+    public void impl2apdu2(Context context){
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A0000001249921F2300100014D4F5E00",0x00);
+        int channelNo = iccOpenLogicalChannelResponse.getChannel();
+
+        telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x43,0x00,0x00,0x01, "01");
+
     }
 
 }

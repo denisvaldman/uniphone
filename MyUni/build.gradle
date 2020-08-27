@@ -21,7 +21,7 @@ android {
 
     defaultConfig {
         applicationId "sk.unimobile.moj"
-        minSdkVersion 23
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode 1
         versionName "1.3"
