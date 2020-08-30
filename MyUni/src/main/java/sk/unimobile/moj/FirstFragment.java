@@ -29,6 +29,8 @@ public class FirstFragment extends Fragment implements CarrierNotif{
 
     TextView tv;
     ProgressBar load;
+    View view;
+    SimDataChecker sim;
 
     @Override
     public View onCreateView(
@@ -38,9 +40,10 @@ public class FirstFragment extends Fragment implements CarrierNotif{
 
 
         // Inflate the layout for this fragment
-        View fragmentView = inflater.inflate(R.layout.fragment_first, container, false);
-        tv = fragmentView.findViewById(R.id.textview_first);
-        load = fragmentView.findViewById(R.id.load);
+        view = inflater.inflate(R.layout.fragment_first, container, false);
+
+        tv = view.findViewById(R.id.textview_first);
+        load = view.findViewById(R.id.load);
         load.setVisibility(View.INVISIBLE);
 
 
@@ -58,7 +61,7 @@ public class FirstFragment extends Fragment implements CarrierNotif{
                 }, new IntentFilter("breadcast")
         );
 
-        return fragmentView;
+        return view;
 
 
     }
@@ -128,8 +131,15 @@ public class FirstFragment extends Fragment implements CarrierNotif{
             //                Toast.LENGTH_SHORT)
             //        .show();
             Logger.i("composing data");
-            SimDataChecker sim = new SimDataChecker();
-            tv.setText(sim.checkItOut(getActivity()).composeData());
+            sim = new SimDataChecker();
+            ResponseObject ro = sim.checkItOut(getActivity()).composeData();
+
+            if(ro.isCarrier()){
+                view.findViewById(R.id.btns_apdu).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.btns_apdu2).setVisibility(View.VISIBLE);
+            }
+
+            tv.setText(ro.getStr());
         }
     }
 
@@ -170,6 +180,111 @@ public class FirstFragment extends Fragment implements CarrierNotif{
 
 
                 //checkPermission(Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_PRECISE_PHONE_STATE, 123);
+                //NavHostFragment.findNavController(FirstFragment.this)
+                //      .navigate(R.id.action_FirstFragment_to_SecondFragment);
+            }
+        });
+
+        setApdus(view);
+    }
+
+    private void setApdus(View view){
+
+        view.findViewById(R.id.apdu11).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Logger.i("apdu11 click");
+                tv.setText("loading");
+                load.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            String result = sim.impl1apdu1(getActivity());
+                            Logger.i(result);
+                            tv.setText("APDU1: " + result);
+                        }catch (Exception ex){
+                            tv.setText("not supported by OS");
+                        }
+                        load.setVisibility(View.INVISIBLE);
+                    }
+                }, 500);
+            }
+        });
+
+
+        view.findViewById(R.id.apdu12).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Logger.i("apdu12 click");
+                tv.setText("loading");
+                load.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            String result = sim.impl1apdu2(getActivity());
+                            Logger.i(result);
+                            tv.setText("APDU2: " + result);
+                        }catch (Exception ex){
+                            tv.setText("not supported by OS");
+                        }
+                        load.setVisibility(View.INVISIBLE);
+                    }
+                }, 500);
+                //NavHostFragment.findNavController(FirstFragment.this)
+                //      .navigate(R.id.action_FirstFragment_to_SecondFragment);
+            }
+        });
+
+        view.findViewById(R.id.apdu21).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Logger.i("apdu21 click");
+                tv.setText("loading");
+                load.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            String result = sim.impl2apdu1(getActivity());
+                            Logger.i(result);
+                            tv.setText("APDU3: " + result);
+                        }catch (Exception ex){
+                            tv.setText("not supported by OS");
+                        }
+                        load.setVisibility(View.INVISIBLE);
+                    }
+                }, 500);
+                //NavHostFragment.findNavController(FirstFragment.this)
+                //      .navigate(R.id.action_FirstFragment_to_SecondFragment);
+            }
+        });
+
+
+        view.findViewById(R.id.apdu22).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Logger.i("apdu22 click");
+                tv.setText("loading");
+                load.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            String result = sim.impl2apdu2(getActivity());
+                            Logger.i(result);
+                            tv.setText("APDU4: " + result);
+                        }catch (Exception ex){
+                            tv.setText("not supported by OS");
+                        }
+                        load.setVisibility(View.INVISIBLE);
+                    }
+                }, 500);
                 //NavHostFragment.findNavController(FirstFragment.this)
                 //      .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }

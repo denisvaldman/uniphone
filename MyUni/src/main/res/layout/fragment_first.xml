@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:text="@string/next"
             />
+
         <LinearLayout
             android:layout_width="15dp"
             android:layout_height="match_parent"/>
@@ -58,5 +59,71 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/btns_apdu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/btns"
+        android:visibility="invisible"
+        >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/apdu11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="APDU 1"
+            />
+
+        <LinearLayout
+            android:layout_width="15dp"
+            android:layout_height="match_parent"/>
+
+        <Button
+            android:id="@+id/apdu12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="APDU 2"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+    android:id="@+id/btns_apdu2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    app:layout_constraintTop_toBottomOf="@id/btns_apdu"
+        android:visibility="invisible">
+
+    <Button
+        android:id="@+id/apdu21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="APDU 3"
+        />
+
+    <LinearLayout
+        android:layout_width="15dp"
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/apdu22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="APDU 4"
+        />
+
+</LinearLayout>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>

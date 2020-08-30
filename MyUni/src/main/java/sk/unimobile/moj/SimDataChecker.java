@@ -63,7 +63,7 @@ public class SimDataChecker {
             return iccid;
         }
 
-        public String composeData() {
+        public ResponseObject composeData() {
             String result = "";
             StringBuilder sb = new StringBuilder();
 
@@ -75,7 +75,7 @@ public class SimDataChecker {
 
             result = sb.toString();
             Logger.i("DATA: "+result);
-            return result;
+            return new ResponseObject(result,getHasPriv());
         }
 
         public void setIccid(String iccid) {
@@ -107,43 +107,63 @@ public class SimDataChecker {
         }
     }
 
-    public void impl1apdu1(Context context){
+    public String impl1apdu1(Context context) throws Exception{
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A000000151000000",0x00);
-        int channelNo = iccOpenLogicalChannelResponse.getChannel();
-        //# You may get something like this 6F1F8410A0000005591010FFFFFFFF8900000100A5049F6501FFE00582030202009000, & you can ignore it.
-        telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0xA4,0x04,0x00,0x10,"A0000001249921F2300100014D4F5E00");
 
-        telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x42,0x00,0x00,0x00,"00");
+        try {
+            IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A000000151000000",0x00);
+            int channelNo = iccOpenLogicalChannelResponse.getChannel();
+            //# You may get something like this 6F1F8410A0000005591010FFFFFFFF8900000100A5049F6501FFE00582030202009000, & you can ignore it.
+            telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0xA4,0x04,0x00,0x10,"A0000001249921F2300100014D4F5E00");
+
+            return telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x42,0x00,0x00,0x00,"00");
+        }catch (NoSuchMethodError e){
+            throw new Exception();
+        }
+    }
+
+    public String impl1apdu2(Context context)throws Exception{
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+
+        try{
+            IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A000000151000000",0x00);
+            int channelNo = iccOpenLogicalChannelResponse.getChannel();
+            //# You may get something like this 6F1F8410A0000005591010FFFFFFFF8900000100A5049F6501FFE00582030202009000, & you can ignore it.
+            telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0xA4,0x04,0x00,0x10,"A0000001249921F2300100014D4F5E00");
+
+            return telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x43,0x00,0x00,0x01, "01");
+
+        } catch (NoSuchMethodError e){
+            throw new Exception();
+        }
+
+}
+
+    public String impl2apdu1(Context context)throws Exception{
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+
+        try {
+            IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A0000001249921F2300100014D4F5E00",0x00);
+            int channelNo = iccOpenLogicalChannelResponse.getChannel();
+
+            return telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x42,0x00,0x00,0x00,"00");
+        } catch (NoSuchMethodError e){
+            throw new Exception();
+        }
 
     }
 
-    public void impl1apdu2(Context context){
+    public String impl2apdu2(Context context)throws Exception{
         TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A000000151000000",0x00);
-        int channelNo = iccOpenLogicalChannelResponse.getChannel();
-        //# You may get something like this 6F1F8410A0000005591010FFFFFFFF8900000100A5049F6501FFE00582030202009000, & you can ignore it.
-        telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0xA4,0x04,0x00,0x10,"A0000001249921F2300100014D4F5E00");
 
-        telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x43,0x00,0x00,0x01, "01");
+        try {
+            IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A0000001249921F2300100014D4F5E00",0x00);
+            int channelNo = iccOpenLogicalChannelResponse.getChannel();
 
-    }
-
-    public void impl2apdu1(Context context){
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A0000001249921F2300100014D4F5E00",0x00);
-        int channelNo = iccOpenLogicalChannelResponse.getChannel();
-
-        telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x42,0x00,0x00,0x00,"00");
-
-    }
-
-    public void impl2apdu2(Context context){
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-        IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A0000001249921F2300100014D4F5E00",0x00);
-        int channelNo = iccOpenLogicalChannelResponse.getChannel();
-
-        telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x43,0x00,0x00,0x01, "01");
+            return telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x43,0x00,0x00,0x01, "01");
+        } catch (NoSuchMethodError e){
+            throw new Exception();
+        }
 
     }
 

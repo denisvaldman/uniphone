@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "sk.unimo.softphone",
+  "applicationId": "sk.unimobile.moj",
   "variantName": "release",
   "elements": [
     {
@@ -14,7 +14,7 @@
       "versionCode": 1,
       "versionName": "1",
       "enabled": true,
-      "outputFile": "unimo-release.apk"
+      "outputFile": "MyUni-release.apk"
     }
   ]
 }
