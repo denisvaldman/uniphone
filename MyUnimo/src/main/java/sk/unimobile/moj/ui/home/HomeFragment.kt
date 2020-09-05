@@ -18,7 +18,6 @@ import sk.unimobile.moj.model.HomeMenuItem
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
-    private lateinit var linearLayoutManager: LinearLayoutManager
     private lateinit var recyclerView: RecyclerView
 
     private lateinit var homeMenuItems: List<HomeMenuItem>
@@ -60,6 +59,7 @@ class HomeFragment : Fragment() {
                 HomeMenuItem(getString(R.string.home_menu_payments), HomeMenuItem.HOME_MENU_PAYMENTS),
                 HomeMenuItem(getString(R.string.home_menu_usage), HomeMenuItem.HOME_MENU_USAGE),
                 HomeMenuItem(getString(R.string.home_menu_settings), HomeMenuItem.HOME_MENU_SETTINGS),
+
         )
     }
 
