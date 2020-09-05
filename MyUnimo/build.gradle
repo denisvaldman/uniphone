@@ -22,11 +22,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "sk.unimobile.moj"
+        applicationId "sk.unimobile.moj.ui"
         minSdkVersion 20
         targetSdkVersion 30
         versionCode 1
-        versionName "2.0"
+        versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
