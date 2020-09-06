@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "applicationId": "sk.unimobile.moj",
+  "variantType": "BASE_APK",
+  "elements": [
+    {
+      "outputType": {
+        "type": "INSTANT_APP_MANIFEST"
+      },
+      "apkData": {
+        "type": "MAIN",
+        "splits": [],
+        "versionCode": 1,
+        "versionName": "2.0",
+        "outputFile": "MyUnimo-debug.apk",
+        "fullName": "debug",
+        "baseName": "debug",
+        "dirName": ""
+      },
+      "path": "AndroidManifest.xml",
+      "properties": {
+        "packageId": "sk.unimobile.moj",
+        "split": "",
+        "minSdkVersion": "20"
+      }
+    }
+  ]
+}
