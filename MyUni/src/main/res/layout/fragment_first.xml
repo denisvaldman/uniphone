@@ -76,7 +76,7 @@
             android:id="@+id/apdu11"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="APDU 1"
+            android:text="Get Flag"
             />
 
         <LinearLayout
@@ -87,7 +87,7 @@
             android:id="@+id/apdu12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="APDU 2"
+            android:text="Enable Flag"
             />
 
     </LinearLayout>
@@ -105,22 +105,22 @@
         android:visibility="invisible">
 
     <Button
-        android:id="@+id/apdu21"
+        android:id="@+id/apdu3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="APDU 3"
+        android:text="Disable Flag"
         />
 
-    <LinearLayout
-        android:layout_width="15dp"
-        android:layout_height="match_parent"/>
+<!--    <LinearLayout-->
+<!--        android:layout_width="15dp"-->
+<!--        android:layout_height="match_parent"/>-->
 
-    <Button
-        android:id="@+id/apdu22"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="APDU 4"
-        />
+<!--    <Button-->
+<!--        android:id="@+id/apdu22"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="APDU 4"-->
+<!--        />-->
 
 </LinearLayout>
 

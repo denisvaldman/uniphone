@@ -203,7 +203,7 @@ public class FirstFragment extends Fragment implements CarrierNotif{
                         try {
                             String result = sim.impl1apdu1(getActivity());
                             Logger.i(result);
-                            tv.setText("APDU1: " + result);
+                            tv.setText("Get Flag: " + result);
                         }catch (Exception ex){
                             tv.setText("not supported by OS");
                         }
@@ -227,7 +227,7 @@ public class FirstFragment extends Fragment implements CarrierNotif{
                         try {
                             String result = sim.impl1apdu2(getActivity());
                             Logger.i(result);
-                            tv.setText("APDU2: " + result);
+                            tv.setText("Enable Flag: " + result);
                         }catch (Exception ex){
                             tv.setText("not supported by OS");
                         }
@@ -239,10 +239,10 @@ public class FirstFragment extends Fragment implements CarrierNotif{
             }
         });
 
-        view.findViewById(R.id.apdu21).setOnClickListener(new View.OnClickListener() {
+        view.findViewById(R.id.apdu3).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Logger.i("apdu21 click");
+                Logger.i("apdu3 click");
                 tv.setText("loading");
                 load.setVisibility(View.VISIBLE);
                 final Handler handler = new Handler();
@@ -250,9 +250,9 @@ public class FirstFragment extends Fragment implements CarrierNotif{
                     @Override
                     public void run() {
                         try {
-                            String result = sim.impl2apdu1(getActivity());
+                            String result = sim.implapdu3(getActivity());
                             Logger.i(result);
-                            tv.setText("APDU3: " + result);
+                            tv.setText("Disable Flag: " + result);
                         }catch (Exception ex){
                             tv.setText("not supported by OS");
                         }
@@ -265,30 +265,30 @@ public class FirstFragment extends Fragment implements CarrierNotif{
         });
 
 
-        view.findViewById(R.id.apdu22).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Logger.i("apdu22 click");
-                tv.setText("loading");
-                load.setVisibility(View.VISIBLE);
-                final Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            String result = sim.impl2apdu2(getActivity());
-                            Logger.i(result);
-                            tv.setText("APDU4: " + result);
-                        }catch (Exception ex){
-                            tv.setText("not supported by OS");
-                        }
-                        load.setVisibility(View.INVISIBLE);
-                    }
-                }, 500);
-                //NavHostFragment.findNavController(FirstFragment.this)
-                //      .navigate(R.id.action_FirstFragment_to_SecondFragment);
-            }
-        });
+//        view.findViewById(R.id.apdu22).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Logger.i("apdu22 click");
+//                tv.setText("loading");
+//                load.setVisibility(View.VISIBLE);
+//                final Handler handler = new Handler();
+//                handler.postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        try {
+//                            String result = sim.impl2apdu2(getActivity());
+//                            Logger.i(result);
+//                            tv.setText("APDU4: " + result);
+//                        }catch (Exception ex){
+//                            tv.setText("not supported by OS");
+//                        }
+//                        load.setVisibility(View.INVISIBLE);
+//                    }
+//                }, 500);
+//                //NavHostFragment.findNavController(FirstFragment.this)
+//                //      .navigate(R.id.action_FirstFragment_to_SecondFragment);
+//            }
+//        });
     }
 
     @Override
