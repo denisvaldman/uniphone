@@ -116,7 +116,11 @@ public class SimDataChecker {
             //# You may get something like this 6F1F8410A0000005591010FFFFFFFF8900000100A5049F6501FFE00582030202009000, & you can ignore it.
             telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0xA4,0x04,0x00,0x10,"A0000001249921F2300100014D4F5E00");
 
-            return telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x42,0x00,0x00,0x00,"");
+            String returnVal = telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x42,0x00,0x00,0x00,"");
+
+            boolean isIccLogicalChannelClosed = telephonyManager.iccCloseLogicalChannel(channelNo);
+            return returnVal;
+
         }catch (NoSuchMethodError e){
             throw new Exception();
         }
@@ -132,7 +136,10 @@ public class SimDataChecker {
             telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0xA4,0x04,0x00,0x10,"A0000001249921F2300100014D4F5E00");
 
             int data = 0x01;
-            return telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x43,0x00,0x00,0x01, Integer.toString(data));
+            String returnVal = telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x43,0x00,0x00,0x01, Integer.toString(data));
+
+            boolean isIccLogicalChannelClosed = telephonyManager.iccCloseLogicalChannel(channelNo);
+            return returnVal;
 
         } catch (NoSuchMethodError e){
             throw new Exception();
@@ -148,7 +155,10 @@ public class SimDataChecker {
             int channelNo = iccOpenLogicalChannelResponse.getChannel();
 
             int data = 0x00;
-            return telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x43,0x00,0x00,0x01, Integer.toString(data));
+            String returnVal = telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0x43,0x00,0x00,0x01, Integer.toString(data));
+
+            boolean isIccLogicalChannelClosed = telephonyManager.iccCloseLogicalChannel(channelNo);
+            return returnVal;
         } catch (NoSuchMethodError e){
             throw new Exception();
         }
