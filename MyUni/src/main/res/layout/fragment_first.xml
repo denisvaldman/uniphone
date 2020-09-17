@@ -30,14 +30,22 @@
 
     <LinearLayout
         android:id="@+id/btns"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:orientation="horizontal"
+        android:layout_gravity="center_horizontal"
+        app:layout_constraintTop_toBottomOf="@id/textview_first"
+        >
+
+    <LinearLayout
         android:layout_gravity="center"
-        app:layout_constraintTop_toBottomOf="@id/textview_first">
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="40dp"
+        >
 
         <Button
             android:id="@+id/button_first"
@@ -60,6 +68,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:paddingBottom="10dp"
         android:id="@+id/btns_apdu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -92,6 +101,8 @@
 
     </LinearLayout>
 
+
+
     <LinearLayout
     android:id="@+id/btns_apdu2"
     android:layout_width="wrap_content"
@@ -121,6 +132,108 @@
 <!--        android:layout_height="wrap_content"-->
 <!--        android:text="APDU 4"-->
 <!--        />-->
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/hexLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CLA:"/>
+
+                <EditText
+                    android:id="@+id/cla"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="INS:"/>
+
+                <EditText
+                    android:id="@+id/ins"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="P1:"/>
+
+                <EditText
+                    android:id="@+id/p1"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="P2:"/>
+
+                <EditText
+                    android:id="@+id/p2"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="P3:"/>
+
+                <EditText
+                    android:id="@+id/p3"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/datalayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DATA:"/>
+
+            <EditText
+                android:id="@+id/data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:layout_gravity="center_horizontal"
+            android:visibility="invisible"
+            />
 
 </LinearLayout>
 

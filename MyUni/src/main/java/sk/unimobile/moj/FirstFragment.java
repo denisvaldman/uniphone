@@ -12,6 +12,7 @@ import android.os.PersistableBundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,8 @@ public class FirstFragment extends Fragment implements CarrierNotif{
     View view;
     SimDataChecker sim;
 
+    EditText cla,ins,p1,p2,p3,data;
+
     @Override
     public View onCreateView(
             LayoutInflater inflater, ViewGroup container,
@@ -43,6 +46,12 @@ public class FirstFragment extends Fragment implements CarrierNotif{
         view = inflater.inflate(R.layout.fragment_first, container, false);
 
         tv = view.findViewById(R.id.textview_first);
+        cla = view.findViewById(R.id.cla);
+        ins = view.findViewById(R.id.ins);
+        p1 = view.findViewById(R.id.p1);
+        p2 = view.findViewById(R.id.p2);
+        p3 = view.findViewById(R.id.p3);
+        data = view.findViewById(R.id.data);
         load = view.findViewById(R.id.load);
         load.setVisibility(View.INVISIBLE);
 
@@ -134,9 +143,12 @@ public class FirstFragment extends Fragment implements CarrierNotif{
             sim = new SimDataChecker();
             ResponseObject ro = sim.checkItOut(getActivity()).composeData();
 
-            if(ro.isCarrier()){
+            if(!ro.isCarrier()){
                 view.findViewById(R.id.btns_apdu).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.btns_apdu2).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.datalayout).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.hexLayout).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.send).setVisibility(View.VISIBLE);
             }
 
             tv.setText(ro.getStr());
@@ -186,6 +198,7 @@ public class FirstFragment extends Fragment implements CarrierNotif{
         });
 
         setApdus(view);
+
     }
 
     private void setApdus(View view){
@@ -261,6 +274,31 @@ public class FirstFragment extends Fragment implements CarrierNotif{
                 }, 500);
                 //NavHostFragment.findNavController(FirstFragment.this)
                 //      .navigate(R.id.action_FirstFragment_to_SecondFragment);
+            }
+        });
+
+        view.findViewById(R.id.send).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Logger.i("send click");
+                tv.setText("loading");
+                load.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            String result = sim.customApdu(cla,ins,p1,p2,p3,data,getActivity());
+                            Logger.i(result);
+                            tv.setText("Get Flag: " + result);
+                        }catch (NumberFormatException ex){
+                            tv.setText("Wrong number format");
+                        } catch (Exception e) {
+                            tv.setText("Data Error");
+                        }
+                        load.setVisibility(View.INVISIBLE);
+                    }
+                }, 500);
             }
         });
 
