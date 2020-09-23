@@ -143,13 +143,13 @@ public class FirstFragment extends Fragment implements CarrierNotif{
             sim = new SimDataChecker();
             ResponseObject ro = sim.checkItOut(getActivity()).composeData();
 
-            if(!ro.isCarrier()){
+//            if(ro.isCarrier()){
                 view.findViewById(R.id.btns_apdu).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.btns_apdu2).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.datalayout).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.hexLayout).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.send).setVisibility(View.VISIBLE);
-            }
+//            }
 
             tv.setText(ro.getStr());
         }

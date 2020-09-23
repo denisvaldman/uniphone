@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         HashCreator.createHash(this);
 
-        Logger.i("startting app");
+        Logger.i("starting app");
 
         
     }
