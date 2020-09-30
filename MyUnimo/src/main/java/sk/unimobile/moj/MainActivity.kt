@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        TestFairy.begin(this, "ec61557a22c2f0cf667be2e77e4e1043ffe04346")
+//        TestFairy.begin(this, "ec61557a22c2f0cf667be2e77e4e1043ffe04346")
         setContentView(R.layout.activity_main)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
