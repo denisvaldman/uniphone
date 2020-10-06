@@ -149,6 +149,8 @@ public class FirstFragment extends Fragment implements CarrierNotif{
                 view.findViewById(R.id.datalayout).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.hexLayout).setVisibility(View.VISIBLE);
                 view.findViewById(R.id.send).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.init).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.close).setVisibility(View.VISIBLE);
 //            }
 
             tv.setText(ro.getStr());
@@ -291,6 +293,56 @@ public class FirstFragment extends Fragment implements CarrierNotif{
                             String result = sim.customApdu(cla,ins,p1,p2,p3,data,getActivity());
                             Logger.i(result);
                             tv.setText("Get Flag: " + result);
+                        }catch (NumberFormatException ex){
+                            tv.setText("Wrong number format");
+                        } catch (Exception e) {
+                            tv.setText("Data Error");
+                        }
+                        load.setVisibility(View.INVISIBLE);
+                    }
+                }, 500);
+            }
+        });
+
+        view.findViewById(R.id.init).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Logger.i("init click");
+                tv.setText("loading");
+                load.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            sim.initiateSession(getActivity());
+                            Logger.i("init session");
+                            tv.setText("Session created: ");
+                        }catch (NumberFormatException ex){
+                            tv.setText("Wrong number format");
+                        } catch (Exception e) {
+                            tv.setText("Data Error");
+                        }
+                        load.setVisibility(View.INVISIBLE);
+                    }
+                }, 500);
+            }
+        });
+
+        view.findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Logger.i("close click");
+                tv.setText("loading");
+                load.setVisibility(View.VISIBLE);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Boolean result = sim.closeSession();
+                            Logger.i("session closed "+result);
+                            tv.setText("Session closed: " + result);
                         }catch (NumberFormatException ex){
                             tv.setText("Wrong number format");
                         } catch (Exception e) {

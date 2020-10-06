@@ -240,9 +240,60 @@ public class SimDataChecker {
 //    }
 
 
+//    public String customApdu(EditText claET, EditText insET ,EditText p1ET, EditText p2ET, EditText p3ET, EditText dataET, Context context) throws Exception {
+//
+//        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+//
+//        try{
+//
+//            int cla = getInt(claET);
+//            int ins = getInt(insET);
+//            int p1 = getInt(p1ET);
+//            int p2 = getInt(p2ET);
+//            int p3 = getInt(p3ET);
+//            String data = String.valueOf(dataET.getText());
+//
+//            IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A000000151000000",0x00);
+//            int channelNo = iccOpenLogicalChannelResponse.getChannel();
+//            //# You may get something like this 6F1F8410A0000005591010FFFFFFFF8900000100A5049F6501FFE00582030202009000, & you can ignore it.
+//
+//            // remove below one completely
+//            telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0xA4,0x04,0x00,0x10,"A0000001249921F2300100014D4F5E00");// applet selection command
+//
+//
+//
+//            String returnVal = telephonyManager.iccTransmitApduLogicalChannel(channelNo,cla,ins,p1,p2,p3, data);
+//
+//            boolean isIccLogicalChannelClosed = telephonyManager.iccCloseLogicalChannel(channelNo);
+//            return returnVal;
+//
+//        } catch (NoSuchMethodError e){
+//            throw new Exception();
+//        }
+//
+//    }
+
+    int m_channelNo;
+    TelephonyManager m_telephonyManager;
+    public void initiateSession(Context context)
+    {
+        m_telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = m_telephonyManager.iccOpenLogicalChannel("A000000151000000",0x00);
+        m_channelNo = iccOpenLogicalChannelResponse.getChannel();
+        //# You may get something like this 6F1F8410A0000005591010FFFFFFFF8900000100A5049F6501FFE00582030202009000, & you can ignore it.
+    }
+
+    public Boolean closeSession()
+    {
+        if(m_telephonyManager == null) return true;
+        boolean isIccLogicalChannelClosed = m_telephonyManager.iccCloseLogicalChannel(m_channelNo);
+        return isIccLogicalChannelClosed;
+    }
+
+
     public String customApdu(EditText claET, EditText insET ,EditText p1ET, EditText p2ET, EditText p3ET, EditText dataET, Context context) throws Exception {
 
-        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        if(m_telephonyManager == null) initiateSession(context);
 
         try{
 
@@ -253,22 +304,12 @@ public class SimDataChecker {
             int p3 = getInt(p3ET);
             String data = String.valueOf(dataET.getText());
 
-            IccOpenLogicalChannelResponse iccOpenLogicalChannelResponse = telephonyManager.iccOpenLogicalChannel("A000000151000000",0x00);
-            int channelNo = iccOpenLogicalChannelResponse.getChannel();
-            //# You may get something like this 6F1F8410A0000005591010FFFFFFFF8900000100A5049F6501FFE00582030202009000, & you can ignore it.
-            telephonyManager.iccTransmitApduLogicalChannel(channelNo,0x00,0xA4,0x04,0x00,0x10,"A0000001249921F2300100014D4F5E00");// applet selection command
-
-
-
-            String returnVal = telephonyManager.iccTransmitApduLogicalChannel(channelNo,cla,ins,p1,p2,p3, data);
-
-            boolean isIccLogicalChannelClosed = telephonyManager.iccCloseLogicalChannel(channelNo);
+            String returnVal = m_telephonyManager.iccTransmitApduLogicalChannel(m_channelNo,cla,ins,p1,p2,p3, data);
             return returnVal;
 
         } catch (NoSuchMethodError e){
             throw new Exception();
         }
-
     }
 
     public int getInt(EditText et){

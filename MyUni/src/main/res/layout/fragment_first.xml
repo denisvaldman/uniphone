@@ -226,14 +226,38 @@
                 android:layout_height="wrap_content"/>
         </LinearLayout>
 
-        <Button
-            android:id="@+id/send"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Send"
             android:layout_gravity="center_horizontal"
-            android:visibility="invisible"
-            />
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/init"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Init"
+                android:visibility="invisible"
+                />
+
+            <Button
+                android:id="@+id/send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Send"
+                android:visibility="invisible"
+                />
+
+            <Button
+                android:id="@+id/close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Close"
+                android:visibility="invisible"
+                />
+
+        </LinearLayout>
 
 </LinearLayout>
 
