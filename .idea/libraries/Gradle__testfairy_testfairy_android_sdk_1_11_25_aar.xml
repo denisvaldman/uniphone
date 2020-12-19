@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="Gradle: testfairy:testfairy-android-sdk:1.11.25@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0564716be9cb52e554473cf796f12872/jetified-testfairy-android-sdk-1.11.25/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0564716be9cb52e554473cf796f12872/jetified-testfairy-android-sdk-1.11.25/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0564716be9cb52e554473cf796f12872/jetified-testfairy-android-sdk-1.11.25/jars/libs/r-classes.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/testfairy/testfairy-android-sdk/1.11.25/9b89ee4dc20c95ec60e84f9b1ac41ba0f3c0d170/testfairy-android-sdk-1.11.25-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/testfairy/testfairy-android-sdk/1.11.25/f538e2a7a673c8a92617b49f6812ae315cae7751/testfairy-android-sdk-1.11.25-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
