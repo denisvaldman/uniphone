@@ -22,19 +22,32 @@ public class SimDataChecker {
 
         TelephonyManager mTelephonyMgr = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         String imei = null;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            imei = mTelephonyMgr.getImei();
-        } else
-            imei = mTelephonyMgr.getDeviceId();
+        try{
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && Build.VERSION.SDK_INT <= Build.VERSION_CODES.R) { // not working?
+                imei = mTelephonyMgr.getImei();
+            } else
+                imei = mTelephonyMgr.getDeviceId();
+        } catch (Exception e){
+            imei = "Access to IMEI restricted by OS";
+        }
 
 
         SIM simObj = new SIM();
         simObj.setHasPriv(mTelephonyMgr.hasCarrierPrivileges());
         simObj.setImei(imei);
+        try{
         simObj.setIccid(mTelephonyMgr.getSimSerialNumber());
+        } catch (Exception e){
+            simObj.setIccid("Access restricted by OS");
+        }
+        try{
         simObj.setImsi(mTelephonyMgr.getSubscriberId());
+        } catch (Exception e){
+            simObj.setImsi("Access restricted by OS");
+        }
 
-        //PersistableBundle bndl = mTelephonyMgr.getCarrierConfig();
+       // PersistableBundle bndl = mTelephonyMgr.getCarrierConfig();
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 simObj.setAuthentication(mTelephonyMgr.getIccAuthentication(TelephonyManager.APPTYPE_SIM, TelephonyManager.AUTHTYPE_EAP_SIM, ""));

@@ -1,0 +1,16 @@
+<component name="libraryTable">
+  <library name="Gradle: testfairy:testfairy-android-sdk:1.11.40@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c9aaee40a6a102e3c079f10f646d391d/jetified-testfairy-android-sdk-1.11.40/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c9aaee40a6a102e3c079f10f646d391d/jetified-testfairy-android-sdk-1.11.40/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c9aaee40a6a102e3c079f10f646d391d/jetified-testfairy-android-sdk-1.11.40/jars/libs/r-classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/c9aaee40a6a102e3c079f10f646d391d/jetified-testfairy-android-sdk-1.11.40/AndroidManifest.xml" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/testfairy/testfairy-android-sdk/1.11.40/1da58c2f91e3d19cc97e14c366d6f93a178656df/testfairy-android-sdk-1.11.40-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/testfairy/testfairy-android-sdk/1.11.40/1dd642489e9af62bb57c7b4591db0de407d10c3d/testfairy-android-sdk-1.11.40-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
